@@ -1,6 +1,8 @@
-*.class
+/*
+!/src
+!/GNU General Public License.txt
+!/.gitignore
+!/changelog.txt
 
-# Package Files #
-*.jar
-*.war
-*.ear
+src/minecraft/*
+!src/minecraft/moony
