@@ -6,6 +6,7 @@ import moony.compactcrafting.blocks.BlockCompactCoalBlock;
 import moony.compactcrafting.blocks.BlockCompactCobblestone;
 import moony.compactcrafting.blocks.BlockCompactDirt;
 import moony.compactcrafting.blocks.BlockCompactGlass;
+import moony.compactcrafting.blocks.BlockCompactGravel;
 import moony.compactcrafting.blocks.BlockCompactNetherrack;
 import moony.compactcrafting.blocks.BlockCompactSand;
 import moony.compactcrafting.creativetabs.CompactTab;
@@ -39,6 +40,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
@@ -57,7 +59,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
-@Mod(modid="CC",name="CCMain", version="3.2")
+@Mod(modid="CC",name="CCMain", version="3.3")
 
 
 
@@ -75,8 +77,9 @@ public class CCMain {
 
 		
 
+
 		
-		
+	
 		//Blocks
 		public static Block CompactDirt;
 		public static Block CompactCobblestone;
@@ -84,20 +87,21 @@ public class CCMain {
 		public static Block CompactNetherrack;
 		public static Block CompactGlass;
 		public static Block CompactSand;
+		public static Block CompactGravel;
 		
 		
 		//EnumThingys
-		public static EnumToolMaterial C1IRON = EnumHelper.addToolMaterial("C1IRON", 2, 1000, 7.0F, 3, 14);
-		public static EnumToolMaterial C1DIAMOND = EnumHelper.addToolMaterial("C1DIAMOND", 3, 6244, 9.0F, 4, 10);
-		public static EnumToolMaterial C1GOLD = EnumHelper.addToolMaterial("C1GOLD", 0, 128, 13.0F, 0, 22);
-		public static EnumToolMaterial C1STONE = EnumHelper.addToolMaterial("C1STONE", 1, 524, 5.0F, 2 ,5);
-		public static EnumToolMaterial C1WOOD = EnumHelper.addToolMaterial("C1WOOD", 0, 236, 3.0F, 0, 15);
-		public static EnumToolMaterial C2IRON = EnumHelper.addToolMaterial("C2IRON", 2, 3600, 10.0F, 5, 14);
-		public static EnumToolMaterial C2DIAMOND = EnumHelper.addToolMaterial("C2DIAMOND", 3, 20000, 15.0F, 7, 10);
-		public static EnumToolMaterial C2GOLD = EnumHelper.addToolMaterial("C2GOLD", 0, 450, 18.0F, 0, 22);
-		public static EnumToolMaterial C2STONE = EnumHelper.addToolMaterial("C2STONE", 1, 1950, 8.0F, 3, 5);
-		public static EnumToolMaterial C2WOOD = EnumHelper.addToolMaterial("C2WOOD", 0, 900, 4.0F, 0, 15);
-		//Configs
+		public static final EnumToolMaterial C1IRON = EnumHelper.addToolMaterial("C1IRON", 2, 1000, 7.0F, 3, 14);
+		public static final EnumToolMaterial C1DIAMOND = EnumHelper.addToolMaterial("C1DIAMOND", 3, 6244, 9.0F, 4, 10);
+		public static final EnumToolMaterial C1GOLD = EnumHelper.addToolMaterial("C1GOLD", 0, 128, 13.0F, 0, 22);
+		public static final EnumToolMaterial C1STONE = EnumHelper.addToolMaterial("C1STONE", 1, 524, 5.0F, 2 ,5);
+		public static final EnumToolMaterial C1WOOD = EnumHelper.addToolMaterial("C1WOOD", 0, 236, 3.0F, 0, 15);
+		public static final EnumToolMaterial C2IRON = EnumHelper.addToolMaterial("C2IRON", 2, 3600, 10.0F, 5, 14);
+		public static final EnumToolMaterial C2DIAMOND = EnumHelper.addToolMaterial("C2DIAMOND", 3, 20000, 15.0F, 7, 10);
+		public static final EnumToolMaterial C2GOLD = EnumHelper.addToolMaterial("C2GOLD", 0, 450, 18.0F, 0, 22);
+		public static final EnumToolMaterial C2STONE = EnumHelper.addToolMaterial("C2STONE", 1, 1950, 8.0F, 3, 5);
+		public static final EnumToolMaterial C2WOOD = EnumHelper.addToolMaterial("C2WOOD", 0, 900, 4.0F, 0, 15);
+		//Configurations
 		int CompactCobblestoneID;
 		int CompactCoalBlockID;
 		int CompactNetherrackID;
@@ -164,20 +168,20 @@ public class CCMain {
 		//Methods
 		
 		
+		//Before Initialising (What do to before initialisation)
 		@PreInit
 		public void preInit(FMLPreInitializationEvent evt) {
-		//Block Registering
 		
+		//Register Rendering
 		proxy.registerRenderThings();
 		
-		
-		
-
-		
+		//Configuration Initialising
 		Configuration cfg = new Configuration(evt.getSuggestedConfigurationFile());
 		
+		//Load any previous configurations
 		cfg.load();
 		
+		//Get Blocks, Items and others, and put them into the Configuration
 		try
 		{
 		CompactCobblestoneID = cfg.getBlock("Compact Cobblestone", 711).getInt();
@@ -209,9 +213,12 @@ public class CCMain {
 		{
 			FMLLog.log(Level.SEVERE, e, "Compact Crafting has problems loading configs");
 		} finally {
+			
+			//Save the Configuration
 			cfg.save();
 		}
 		
+		//Initialise all the Items
 		CompactCoal = new ItemCompactCoal(7001).setUnlocalizedName("CompactCoal");
 		C1IronPickaxe = new ItemC1IronPickaxe(C1IronPickaxeID, C1IRON).setUnlocalizedName("C1IronPickaxe");
 		C1DiamondPickaxe = new ItemC1DiamondPickaxe(C1DiamondPickaxeID, C1DIAMOND).setUnlocalizedName("C1DiamondPickaxe");
@@ -233,33 +240,29 @@ public class CCMain {
 		C2GoldAxe = new ItemC2GoldAxe(C2GoldAxeID, C2GOLD).setUnlocalizedName("C2GoldenAxe");
 		C2StoneAxe = new ItemC2StoneAxe(C2StoneAxeID, C2STONE).setUnlocalizedName("C2StoneAxe");
 		C2WoodenAxe = new ItemC2WoodenAxe(C2WoodenAxeID, C2WOOD).setUnlocalizedName("C2WoodenAxe");
-		//Block Settings
 		
+		//Initialise all the Blocks
 		CompactCobblestone = new BlockCompactCobblestone(711, Material.rock).setHardness(3.2F).setResistance(4.0F).setUnlocalizedName("CompactCobblestone");
 		CompactCoalBlock = new BlockCompactCoalBlock(712, Material.rock).setHardness(3.0F).setUnlocalizedName("CompactCoalBlock");
 		CompactNetherrack = new BlockCompactNetherrack(713, Material.rock).setHardness(0.44F).setUnlocalizedName("CompactNetherrack");
 		CompactDirt = new BlockCompactDirt(714, Material.ground).setHardness(0.6F).setUnlocalizedName("CompactDirt");
 		CompactGlass = new BlockCompactGlass(715, Material.glass).setHardness(0.3F).setUnlocalizedName("CompactGlass");
 		CompactSand = new BlockCompactSand(716, Material.sand).setHardness(0.6F).setUnlocalizedName("CompactSand");
-				
+		CompactGravel = new BlockCompactGravel(717).setHardness(0.7F).setUnlocalizedName("CompactGravel");		
+		
+		//Initialise Achievements 
 		achievements = new CompactAchievement();
 		
+		
 	}
-
+		
+		
+		//Initialising (What do to during initialisation)
 		@Init
 		public void load(FMLInitializationEvent evt) {
-		
-		
-
-	
 			
-		//Item Settings
-			
-
-
 		
-	
-
+		//Registering Blocks
 			
 		GameRegistry.registerBlock(CompactCobblestone, "CompactCobblestone");
 		GameRegistry.registerBlock(CompactCoalBlock, "CompactCoalBlock");
@@ -268,57 +271,63 @@ public class CCMain {
 		GameRegistry.registerBlock(CompactGlass, "CompactGlass");
 		GameRegistry.registerBlock(CompactSand, "CompactSand");
 		
+		//Handlers
 		GameRegistry.registerCraftingHandler(new CraftingHandler());
 		
-LanguageRegistry.instance().addNameForObject(CompactCoal, "en_US", "Compact Coal");
-LanguageRegistry.addName(CompactCobblestone, "Compact Cobblestone");
-LanguageRegistry.addName(CompactCoalBlock, "Compact Coal Block");
-LanguageRegistry.addName(CompactNetherrack, "Compact Netherrack");
-LanguageRegistry.addName(CompactDirt, "Compact Dirt");
-LanguageRegistry.addName(CompactGlass, "Compact Glass");
-LanguageRegistry.addName(CompactSand, "Compact Sand");
-
-LanguageRegistry.addName(C1IronPickaxe, "|Iron Pickaxe|");
-LanguageRegistry.addName(C1DiamondPickaxe, "|Diamond Pickaxe|");
-LanguageRegistry.instance().addNameForObject(C1GoldPickaxe, "en_US", "|Golden Pickaxe|");
-LanguageRegistry.instance().addNameForObject(C1StonePickaxe, "en_US", "|Stone Pickaxe|");
-LanguageRegistry.addName(C1WoodenPickaxe, "|Wooden Pickaxe|");
-
-LanguageRegistry.addName(C2IronPickaxe, "||Iron Pickaxe||");
-LanguageRegistry.addName(C2DiamondPickaxe, "||Diamond Pickaxe||");
-LanguageRegistry.addName(C2GoldPickaxe, "||Golden Pickaxe||");
-LanguageRegistry.addName(C2StonePickaxe, "||Stone Pickaxe||");
-LanguageRegistry.addName(C2WoodenPickaxe, "||Wooden Pickaxe||");
-
-LanguageRegistry.addName(C1IronAxe, "|Iron Axe|");
-LanguageRegistry.addName(C1DiamondAxe, "|Diamond Axe|");
-LanguageRegistry.addName(C1GoldAxe, "|Golden Axe|");
-LanguageRegistry.addName(C1StoneAxe, "|Stone Axe|");
-LanguageRegistry.addName(C1WoodenAxe, "|Wooden Axe|");
-
-LanguageRegistry.addName(C2IronAxe, "||Iron Axe||");
-LanguageRegistry.addName(C2DiamondAxe, "||Diamond Axe||");
-LanguageRegistry.addName(C2GoldAxe, "||Golden Axe||");
-LanguageRegistry.addName(C2StoneAxe, "||Stone Axe||");
-LanguageRegistry.addName(C2WoodenAxe, "||Wooden Axe||");
-
-LanguageRegistry.instance().addStringLocalization("itemGroup.compactTab", "en_US", "Compact Crafting");
-
-
-
-
-	this.addAchievementName("compactBlockAchievement", "Compact Something");
-	this.addAchievementDesc("compactBlockAchievement", "Compact a raw material using the workbench.");
-	
-	this.addAchievementName("compactGlassAchievement", "Compact Smelting");
-	this.addAchievementDesc("compactGlassAchievement", "Smelt Compact Sand to get Compact Glass");
-	
-	CompactCraftingPage = new AchievementPage("Compact Crafting", achievements.compactBlockAchieve, achievements.compactGlassAchieve);
-	AchievementPage.registerAchievementPage(CompactCraftingPage);
+		
+		//Registering Names for Blocks
+		LanguageRegistry.addName(CompactCobblestone, "Compact Cobblestone");
+		LanguageRegistry.addName(CompactCoalBlock, "Compact Coal Block");
+		LanguageRegistry.addName(CompactNetherrack, "Compact Netherrack");
+		LanguageRegistry.addName(CompactDirt, "Compact Dirt");
+		LanguageRegistry.addName(CompactGlass, "Compact Glass");
+		LanguageRegistry.addName(CompactSand, "Compact Sand");
+		
+		//Registering Names for Items
+		LanguageRegistry.instance().addNameForObject(CompactCoal, "en_US", "Compact Coal");
+		LanguageRegistry.addName(C1IronPickaxe, "|Iron Pickaxe|");
+		LanguageRegistry.addName(C1DiamondPickaxe, "|Diamond Pickaxe|");
+		LanguageRegistry.instance().addNameForObject(C1GoldPickaxe, "en_US", "|Golden Pickaxe|");
+		LanguageRegistry.instance().addNameForObject(C1StonePickaxe, "en_US", "|Stone Pickaxe|");
+		LanguageRegistry.addName(C1WoodenPickaxe, "|Wooden Pickaxe|");
+		
+		LanguageRegistry.addName(C2IronPickaxe, "||Iron Pickaxe||");
+		LanguageRegistry.addName(C2DiamondPickaxe, "||Diamond Pickaxe||");
+		LanguageRegistry.addName(C2GoldPickaxe, "||Golden Pickaxe||");
+		LanguageRegistry.addName(C2StonePickaxe, "||Stone Pickaxe||");
+		LanguageRegistry.addName(C2WoodenPickaxe, "||Wooden Pickaxe||");
+		
+		LanguageRegistry.addName(C1IronAxe, "|Iron Axe|");
+		LanguageRegistry.addName(C1DiamondAxe, "|Diamond Axe|");
+		LanguageRegistry.addName(C1GoldAxe, "|Golden Axe|");
+		LanguageRegistry.addName(C1StoneAxe, "|Stone Axe|");
+		LanguageRegistry.addName(C1WoodenAxe, "|Wooden Axe|");
+		
+		LanguageRegistry.addName(C2IronAxe, "||Iron Axe||");
+		LanguageRegistry.addName(C2DiamondAxe, "||Diamond Axe||");
+		LanguageRegistry.addName(C2GoldAxe, "||Golden Axe||");
+		LanguageRegistry.addName(C2StoneAxe, "||Stone Axe||");
+		LanguageRegistry.addName(C2WoodenAxe, "||Wooden Axe||");
+		
+		//Registering Names for others
+		LanguageRegistry.instance().addStringLocalization("itemGroup.compactTab", "en_US", "Compact Crafting");
 
 
-GameRegistry.registerFuelHandler(new CompactFuel());
-GameRegistry.registerWorldGenerator(new WorldGeneratorCCB());
+		//Achievement Pages, Names and Descriptions
+
+		this.addAchievementName("compactBlockAchievement", "Compact Something");
+		this.addAchievementDesc("compactBlockAchievement", "Compact a raw material using the workbench.");
+		
+		this.addAchievementName("compactGlassAchievement", "Compact Smelting");
+		this.addAchievementDesc("compactGlassAchievement", "Smelt Compact Sand to get Compact Glass");
+		
+		CompactCraftingPage = new AchievementPage("Compact Crafting", achievements.compactBlockAchieve, achievements.compactGlassAchieve);
+		AchievementPage.registerAchievementPage(CompactCraftingPage);
+
+		//Registering others
+
+		GameRegistry.registerFuelHandler(new CompactFuel());
+		GameRegistry.registerWorldGenerator(new WorldGeneratorCCB());
 		//Shaped Recipes
 		GameRegistry.addRecipe(new ItemStack(CCMain.CompactCobblestone), new Object[]
 				{
@@ -452,18 +461,19 @@ GameRegistry.registerWorldGenerator(new WorldGeneratorCCB());
 
 	}
 		
-		
+		//Method to add an Achievement Name
 		private void addAchievementName(String ach, String name)
 		{
 		LanguageRegistry.instance().addStringLocalization("achievement." + ach, "en_US", name);
 		}
-
+		
+		//Method to add an Achievement Description
 		private void addAchievementDesc(String ach, String desc)
 		{
 		LanguageRegistry.instance().addStringLocalization("achievement." + ach + ".desc", "en_US", desc);
 		}
 	
-
+	//Post Initialising (What do to after initialisation)
 	@PostInit
 	public void postInit(FMLPostInitializationEvent evt) {
 
