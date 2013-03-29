@@ -18,7 +18,7 @@ public class CompactAchievement {
       final compactBlockAchieve = new Achievement(2200, "compactBlockAchievement", 0, 0, BlockIDs.CompactCobblestone, null);
       final compactGlassAchieve = new Achievement(2201, "compactGlassAchievement", 2, -2, BlockIDs.CompactGlass,            compactBlockAchieve);
     }
-Ç
+
     public static void registerAchievements() {
         compactBlockAchieve.registerAchievement();
         compactGlassAchieve.registerAchievement();
