@@ -11,6 +11,7 @@ import moony.compactcrafting.blocks.BlockCompactNetherrack;
 import moony.compactcrafting.blocks.BlockCompactSand;
 import moony.compactcrafting.creativetabs.CompactTab;
 import moony.compactcrafting.fuels.CompactFuel;
+import moony.compactcrafting.gui.GuiHandler;
 import moony.compactcrafting.items.ItemC1DiamondAxe;
 import moony.compactcrafting.items.ItemC1DiamondPickaxe;
 import moony.compactcrafting.items.ItemC1GoldAxe;
@@ -33,6 +34,7 @@ import moony.compactcrafting.items.ItemC2WoodenAxe;
 import moony.compactcrafting.items.ItemC2WoodenPickaxe;
 import moony.compactcrafting.items.ItemCompactCoal;
 import moony.compactcrafting.proxys.CommonProxy;
+import moony.compactcrafting.tileentitys.TileEntityCompactChest;
 import moony.compactcrafting.worldgenerators.WorldGeneratorCCB;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -40,7 +42,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
@@ -55,6 +56,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -69,7 +71,8 @@ public class CCMain {
 	
 	@Instance ("CC")
 	public static CCMain instance;
-	
+
+	private GuiHandler guiHandler = new GuiHandler();
 	
 
 	@SidedProxy(clientSide = "moony.compactcrafting.proxys.ClientProxy", serverSide = "moony.compactcrafting.proxys.CommonProxy") //Tells Forge the location of your proxies
@@ -88,6 +91,7 @@ public class CCMain {
 		public static Block CompactGlass;
 		public static Block CompactSand;
 		public static Block CompactGravel;
+		public static Block CompactChest;
 		
 		
 		//EnumThingys
@@ -248,8 +252,9 @@ public class CCMain {
 		CompactDirt = new BlockCompactDirt(714, Material.ground).setHardness(0.6F).setUnlocalizedName("CompactDirt");
 		CompactGlass = new BlockCompactGlass(715, Material.glass).setHardness(0.3F).setUnlocalizedName("CompactGlass");
 		CompactSand = new BlockCompactSand(716, Material.sand).setHardness(0.6F).setUnlocalizedName("CompactSand");
-		CompactGravel = new BlockCompactGravel(717).setHardness(0.7F).setUnlocalizedName("CompactGravel");		
-		
+		CompactGravel = new BlockCompactGravel(717).setHardness(0.7F).setUnlocalizedName("CompactGravel");
+		CompactChest = new BlockCompactChest(718, Material.wood).setHardness(0.7F).setUnlocalizedName("CompactChest");
+
 		//Initialise Achievements 
 		achievements = new CompactAchievement();
 		
@@ -262,6 +267,12 @@ public class CCMain {
 		public void load(FMLInitializationEvent evt) {
 			
 		
+		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
+		
+		GameRegistry.registerTileEntity(TileEntityCompactChest.class, "tecompactchest");
+
+			
+			
 		//Registering Blocks
 			
 		GameRegistry.registerBlock(CompactCobblestone, "CompactCobblestone");
@@ -270,7 +281,7 @@ public class CCMain {
 		GameRegistry.registerBlock(CompactDirt, "CompactDirt");
 		GameRegistry.registerBlock(CompactGlass, "CompactGlass");
 		GameRegistry.registerBlock(CompactSand, "CompactSand");
-		
+		GameRegistry.registerBlock(CompactChest, "CompactChest");
 		//Handlers
 		GameRegistry.registerCraftingHandler(new CraftingHandler());
 		
