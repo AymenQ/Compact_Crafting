@@ -1,8 +1,10 @@
-Compact_Crafting
-================
+## Compact Crafting
 
-The Compact Crafting Mod for Minecraft. With this mod it's easier to store materials and use up unneeded
-materials to make better things. The official mod thread is at: http://bit.ly/X1vhO8
+**Minecraft Forum Thread:** Compact Crafting on Minecraft Forums [http://bit.ly/X1vhO8]
+
+***
+Compact Crafting is a mod for the game minecraft which makes it easier to store the most common materials and save space. Also this mod adds certain methods to turn your useless stuff to their more useful counterparts.
+***
 
  Copyright (C) 2013  Moony22
 
