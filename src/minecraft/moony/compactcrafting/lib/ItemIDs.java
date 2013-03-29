@@ -1,4 +1,4 @@
-package moony.compactcrafting;
+package moony.compactcrafting.lib;
 
 public class ItemIDs {
 
