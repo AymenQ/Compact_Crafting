@@ -1,4 +1,4 @@
-package moony22.compactcrafting.core.helper;
+package moony.compactcrafting.core.helper;
 
 /**
   * Modcheck Helper class for checking mods if they're loaded solely for addon purposes
