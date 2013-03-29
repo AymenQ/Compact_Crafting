@@ -11,7 +11,7 @@ public class CompactAchievement {
 
     public static void init() {
         declareAchievements();
-        RegisterAchievements();
+        registerAchievements();
     }
 
     public static void declareAchievements() {
