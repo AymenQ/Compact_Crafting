@@ -4,8 +4,8 @@ public class BlockIDs {
 
     public static int CompactCobblestoneID;
     public static int CompactCoalBlockID;
-	public static int CompactNetherrackID;
-	public static int CompactDirtID;
+    public static int CompactNetherrackID;
+    public static int CompactDirtID;
     public static int CompactSandID;
     public static int CompactGlassID;
     
