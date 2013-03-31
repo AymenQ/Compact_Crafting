@@ -2,12 +2,7 @@ package moony.compactcrafting;
 
 import java.util.logging.Level;
 
-import moony.compactcrafting.blocks.BlockCompactCoalBlock;
-import moony.compactcrafting.blocks.BlockCompactCobblestone;
-import moony.compactcrafting.blocks.BlockCompactDirt;
-import moony.compactcrafting.blocks.BlockCompactGlass;
-import moony.compactcrafting.blocks.BlockCompactNetherrack;
-import moony.compactcrafting.blocks.BlockCompactSand;
+import moony.compactcrafting.blocks.*;
 import moony.compactcrafting.creativetabs.CompactTab;
 import moony.compactcrafting.fuels.CompactFuel;
 import moony.compactcrafting.items.ItemC1DiamondAxe;
@@ -33,6 +28,7 @@ import moony.compactcrafting.items.ItemC2WoodenPickaxe;
 import moony.compactcrafting.items.ItemCompactCoal;
 import moony.compactcrafting.proxys.CommonProxy;
 import moony.compactcrafting.worldgenerators.WorldGeneratorCCB;
+import moony.compactcrafting.core.handler.ConfigurationHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
