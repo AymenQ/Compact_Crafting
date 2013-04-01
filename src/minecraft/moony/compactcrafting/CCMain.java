@@ -93,34 +93,6 @@ public class CCMain {
 		public static EnumToolMaterial C2GOLD = EnumHelper.addToolMaterial("C2GOLD", 0, 450, 18.0F, 0, 22);
 		public static EnumToolMaterial C2STONE = EnumHelper.addToolMaterial("C2STONE", 1, 1950, 8.0F, 3, 5);
 		public static EnumToolMaterial C2WOOD = EnumHelper.addToolMaterial("C2WOOD", 0, 900, 4.0F, 0, 15);
-		//Configs
-		int CompactCobblestoneID;
-		int CompactCoalBlockID;
-		int CompactNetherrackID;
-		int CompactCoalID;
-		int CompactDirtID;
-		int C1IronPickaxeID;
-		int C1DiamondPickaxeID;
-		int C1GoldPickaxeID;
-		int C1StonePickaxeID;
-		int C1WoodenPickaxeID;
-		int C2IronPickaxeID;
-		int C2DiamondPickaxeID;
-		int C2GoldenPickaxeID;
-		int C2StonePickaxeID;
-		int C2WoodenPickaxeID;
-		int C1IronAxeID;
-		int C1DiamondAxeID;
-		int C1GoldAxeID;
-		int C1StoneAxeID;
-		int C1WoodenAxeID;
-		int C2IronAxeID;
-		int C2DiamondAxeID;
-		int C2GoldAxeID;
-		int C2StoneAxeID;
-		int C2WoodenAxeID;
-
-		
 		
 		//Items
 		public static Item CompactCoal;
@@ -166,47 +138,7 @@ public class CCMain {
 		
 		proxy.registerRenderThings();
 		
-		
-		
-
-		
-		Configuration cfg = new Configuration(evt.getSuggestedConfigurationFile());
-		
-		cfg.load();
-		
-		try
-		{
-		CompactCobblestoneID = cfg.getBlock("Compact Cobblestone", 711).getInt();
-		C1WoodenPickaxeID = cfg.getItem("|Wooden Pickaxe|", 7006).getInt();
-		CompactCoalBlockID = cfg.getBlock("Compact Coal Block", 712).getInt();
-		CompactNetherrackID = cfg.getBlock("Compact Netherrack", 713).getInt();
-		CompactDirtID = cfg.getBlock("Compact Dirt", 714).getInt();
-		CompactCoalID = cfg.getItem("Compact Coal", 7001).getInt();
-		C1IronPickaxeID = cfg.getItem("|Iron Pickaxe|", 7002).getInt();
-		C1DiamondPickaxeID = cfg.getItem("|Diamond Pickaxe|", 7003).getInt();
-		C1GoldPickaxeID = cfg.getItem("|Gold Pickaxe|", 7004).getInt();
-		C1StonePickaxeID = cfg.getItem("|Stone Pickaxe|", 7005).getInt();
-		C2IronPickaxeID = cfg.getItem("||Iron Pickaxe||",7006).getInt();
-		C2DiamondPickaxeID = cfg.getItem("||Diamond Pickaxe||", 7007).getInt();
-		C2GoldenPickaxeID = cfg.getItem("||Golden Pickaxe||", 7008).getInt();
-		C2StonePickaxeID = cfg.getItem("||Stone Pickaxe||", 7009).getInt();
-		C2WoodenPickaxeID = cfg.getItem("||Wooden Pickaxe||", 7010).getInt();
-		C1IronAxeID = cfg.getItem("|Iron Axe|", 7011).getInt();
-		C1DiamondAxeID = cfg.getItem("|Diamond Axe|", 7012).getInt();
-		C1GoldAxeID = cfg.getItem("|Golden Axe|", 7013).getInt();
-		C1StoneAxeID = cfg.getItem("|Stone Axe|", 7014).getInt();
-		C1WoodenAxeID = cfg.getItem("|Wooden Axe|", 7015).getInt();
-		C2IronAxeID = cfg.getItem("||Iron Axe||", 7016).getInt();
-		C2DiamondAxeID = cfg.getItem("||Diamond Axe||", 7017).getInt();
-		C2GoldAxeID = cfg.getItem("||Golden Axe||", 7018).getInt();
-		C2StoneAxeID = cfg.getItem("||Stone Axe||", 7019).getInt();
-		C2WoodenAxeID = cfg.getItem("||Wooden Axe||", 7020).getInt();
-		} catch (Exception e)
-		{
-			FMLLog.log(Level.SEVERE, e, "Compact Crafting has problems loading configs");
-		} finally {
-			cfg.save();
-		}
+		ConfigurationHandler.init();
 		
 		CompactCoal = new ItemCompactCoal(7001).setUnlocalizedName("CompactCoal");
 		C1IronPickaxe = new ItemC1IronPickaxe(C1IronPickaxeID, C1IRON).setUnlocalizedName("C1IronPickaxe");
