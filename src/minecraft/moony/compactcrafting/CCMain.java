@@ -138,7 +138,7 @@ public class CCMain {
 		
 		proxy.registerRenderThings();
 		
-		ConfigurationHandler.init();
+		ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + "\\compactcrafting\\" + "CC" + ".cfg"));
 		
 		CompactCoal = new ItemCompactCoal(7001).setUnlocalizedName("CompactCoal");
 		C1IronPickaxe = new ItemC1IronPickaxe(C1IronPickaxeID, C1IRON).setUnlocalizedName("C1IronPickaxe");
