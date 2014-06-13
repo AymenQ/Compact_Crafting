@@ -5,7 +5,7 @@ import java.util.Random;
 import moony.compactcrafting.CCMain;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -22,7 +22,7 @@ public class BlockGlassBrickBlock extends BlockBreakable
 	public int quantityDropped(Random par1Random)
 	{
 		return 0;
-	}
+	}	
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -43,14 +43,16 @@ public class BlockGlassBrickBlock extends BlockBreakable
 		return 1;
 	}
 
+	@Override
 	protected boolean canSilkHarvest()
 	{
 		return true;
 	}
 
-	public void registerIcons(IconRegister par1IconRegister)
+	@Override
+	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
 		this.blockIcon = par1IconRegister.registerIcon(CCMain.modid + ":"
-				+ this.getUnlocalizedName2());
+				+ "GlassBrickBlock");
 	}
 }
