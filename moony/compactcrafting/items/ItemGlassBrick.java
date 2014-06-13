@@ -1,26 +1,22 @@
 package moony.compactcrafting.items;
 
 import moony.compactcrafting.CCMain;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class ItemGlassBrick extends Item
 {
 
-	public ItemGlassBrick(int id)
+	public ItemGlassBrick()
 	{
-		super(id);
+		super();
 		this.setCreativeTab(CCMain.compactTab);
 
 	}
 
-	public void updateIcons(IconRegister par1IconRegister)
+	@Override
+	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.iconIndex = par1IconRegister.registerIcon(CCMain.modid + ":"
-				+ this.getUnlocalizedName());
-
+	    this.itemIcon = par1IconRegister.registerIcon(CCMain.modid + ":" + "GlassBrick");
 	}
 }

@@ -1,10 +1,7 @@
 package moony.compactcrafting.core.handler;
 
-import moony.compactcrafting.containers.ContainerCompactChest;
 import moony.compactcrafting.containers.ContainerPressureMachine;
-import moony.compactcrafting.gui.GuiCompactChest;
 import moony.compactcrafting.gui.GuiPressureMachine;
-import moony.compactcrafting.tileentitys.TileEntityCompactChest;
 import moony.compactcrafting.tileentitys.TilePressureMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -18,12 +15,12 @@ public class GuiHandler implements IGuiHandler
 	public Object getServerGuiElement(int id, EntityPlayer player, World world,
 			int x, int y, int z)
 	{
-		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-		if (tileEntity instanceof TileEntityCompactChest)
+		TileEntity tileEntity = world.getTileEntity(x, y, z);
+		/*if (tileEntity instanceof TileEntityCompactChest)
 		{
 			return new ContainerCompactChest(player.inventory,
 					(TileEntityCompactChest) tileEntity);
-		}
+		}*/
 		if (tileEntity instanceof TilePressureMachine)
 		{
 			return new ContainerPressureMachine(player.inventory,
@@ -36,12 +33,13 @@ public class GuiHandler implements IGuiHandler
 	public Object getClientGuiElement(int id, EntityPlayer player, World world,
 			int x, int y, int z)
 	{
-		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-		if (tileEntity instanceof TileEntityCompactChest)
+		TileEntity tileEntity = world.getTileEntity(x, y, z);
+		
+		/*if (tileEntity instanceof TileEntityCompactChest)
 		{
 			return new GuiCompactChest(player.inventory,
 					(TileEntityCompactChest) tileEntity);
-		}
+		}*/
 		if (tileEntity instanceof TilePressureMachine)
 		{
 			return new GuiPressureMachine(player.inventory,

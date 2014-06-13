@@ -166,7 +166,7 @@ public class BlockPressureMachine extends BlockContainer
 			EntityPlayer player, int i, float f, float g, float t)
 	{
 
-		world.playSoundEffect(x, y, z, "CC.PMOpen", 0.5F, 1.0F);
+		world.playSoundEffect(x, y, z, ("CC:" + "PMOpen"), 0.5F, 1.0F);
 
 		if (CCMain.EasterEggOn == 1)
 		{

@@ -1,4 +1,4 @@
-package moony.compactcrafting.gui;
+/*package moony.compactcrafting.gui;
 
 import moony.compactcrafting.containers.ContainerCompactChest;
 import moony.compactcrafting.tileentitys.TileEntityCompactChest;
@@ -39,4 +39,4 @@ public class GuiCompactChest extends GuiContainer
 
 	}
 
-}
+}*/

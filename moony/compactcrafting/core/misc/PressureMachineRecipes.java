@@ -31,17 +31,17 @@ public class PressureMachineRecipes
 	private PressureMachineRecipes()
 	{
 
-		this.addSmelting(CCMain.CompactGlass.blockID, new ItemStack(
+		this.addSmelting(Item.getItemFromBlock(CCMain.CompactGlass), new ItemStack(
 				CCMain.GlassBrick, 8), 0.7F);
 	}
 
 	/**
 	 * Adds a smelting recipe.
 	 */
-	public void addSmelting(int par1, ItemStack par2ItemStack, float par3)
+	public void addSmelting(Item par1, ItemStack par2ItemStack, float par3)
 	{
-		this.smeltingList.put(Integer.valueOf(par1), par2ItemStack);
-		this.experienceList.put(Integer.valueOf(par2ItemStack.itemID),
+		this.smeltingList.put(par1, par2ItemStack);
+		this.experienceList.put(par2ItemStack.getItem(),
 				Float.valueOf(par3));
 	}
 
@@ -92,12 +92,12 @@ public class PressureMachineRecipes
 			return null;
 		}
 		ItemStack ret = (ItemStack) metaSmeltingList.get(Arrays.asList(
-				item.itemID, item.getItemDamage()));
+				item.getItem(), item.getItemDamage()));
 		if (ret != null)
 		{
 			return ret;
 		}
-		return (ItemStack) smeltingList.get(Integer.valueOf(item.itemID));
+		return (ItemStack) smeltingList.get(item.getItem());
 	}
 
 	/**
@@ -112,15 +112,15 @@ public class PressureMachineRecipes
 		}
 		float ret = item.getItem().getSmeltingExperience(item);
 		if (ret < 0
-				&& metaExperience.containsKey(Arrays.asList(item.itemID,
+				&& metaExperience.containsKey(Arrays.asList(item.getItem(),
 						item.getItemDamage())))
 		{
-			ret = metaExperience.get(Arrays.asList(item.itemID,
+			ret = metaExperience.get(Arrays.asList(item.getItem(),
 					item.getItemDamage()));
 		}
-		if (ret < 0 && experienceList.containsKey(item.itemID))
+		if (ret < 0 && experienceList.containsKey(item.getItem()))
 		{
-			ret = ((Float) experienceList.get(item.itemID)).floatValue();
+			ret = ((Float) experienceList.get(item.getItem())).floatValue();
 		}
 		return (ret < 0 ? 0 : ret);
 	}

@@ -1,24 +1,22 @@
 package moony.compactcrafting.items;
 
 import moony.compactcrafting.CCMain;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemSpade;
 
 public class ItemC1IronShovel extends ItemSpade
 {
 
-	public ItemC1IronShovel(int id, EnumToolMaterial enumToolMaterial)
+	public ItemC1IronShovel(ToolMaterial enumToolMaterial)
 	{
-		super(id, enumToolMaterial);
+		super(enumToolMaterial);
 		this.setCreativeTab(CreativeTabs.tabTools);
 	}
 
-	public void updateIcons(IconRegister par1IconRegister)
+	@Override
+	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.iconIndex = par1IconRegister.registerIcon(CCMain.modid + ":"
-				+ this.getUnlocalizedName());
-
+	    this.itemIcon = par1IconRegister.registerIcon(CCMain.modid + ":" + "C1IronShovel");
 	}
 }

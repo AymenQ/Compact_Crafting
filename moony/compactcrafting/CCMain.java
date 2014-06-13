@@ -1,7 +1,5 @@
 package moony.compactcrafting;
 
-import java.util.logging.Level;
-
 import moony.compactcrafting.blocks.BlockCompactCoalBlock;
 import moony.compactcrafting.blocks.BlockCompactCobblestone;
 import moony.compactcrafting.blocks.BlockCompactDirt;
@@ -10,7 +8,6 @@ import moony.compactcrafting.blocks.BlockCompactGravel;
 import moony.compactcrafting.blocks.BlockCompactNetherrack;
 import moony.compactcrafting.blocks.BlockCompactSand;
 import moony.compactcrafting.blocks.BlockGlassBrickBlock;
-import moony.compactcrafting.core.handler.CC_SoundHandler;
 import moony.compactcrafting.core.handler.EventListener;
 import moony.compactcrafting.core.handler.GuiHandler;
 import moony.compactcrafting.core.proxys.CommonProxy;
@@ -44,7 +41,6 @@ import moony.compactcrafting.items.ItemC2WoodenPickaxe;
 import moony.compactcrafting.items.ItemCompactCoal;
 import moony.compactcrafting.items.ItemCompactRedstoneCrystal;
 import moony.compactcrafting.items.ItemGlassBrick;
-import moony.compactcrafting.lib.ItemIDs;
 import moony.compactcrafting.tileentitys.TileEntityCompactChest;
 import moony.compactcrafting.tileentitys.TilePressureMachine;
 import moony.compactcrafting.worldgenerators.WorldGeneratorCCB;
@@ -58,11 +54,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.AchievementPage;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -188,7 +182,6 @@ public class CCMain {
 
 		// Register Rendering
 		proxy.registerRenderThings();
-		MinecraftForge.EVENT_BUS.register(new CC_SoundHandler());
 
 		// Configuration Initialising
 		Configuration cfg = new Configuration(
@@ -218,8 +211,8 @@ public class CCMain {
 							"Set to 0 to disable Compact Crafting Easter Egg, and set to 1 to enable it")
 					.getInt();
 		} catch (Exception e) {
-			FMLLog.log(Level.SEVERE,
-					"Compact Crafting has trouble loading config", e);
+			//FMLLog.log(Level.SEVERE,
+					//"Compact Crafting has trouble loading config", e);
 		} finally {
 
 			// Save the Configuration
@@ -235,7 +228,7 @@ public class CCMain {
 		C1GoldPickaxe = new ItemC1GoldPickaxe(C1GOLD)
 				.setUnlocalizedName("C1GoldenPickaxe");
 		C1StonePickaxe = new ItemC1StonePickaxe(C1STONE)
-				.setUnlocalizedName("C1StonePickaxe");	
+				.setUnlocalizedName("C1StonePickaxe");
 		C1WoodenPickaxe = new ItemC1WoodenPickaxe(C1WOOD)
 				.setUnlocalizedName("C1WoodenPickaxe");
 		C2IronPickaxe = new ItemC2IronPickaxe(C2IRON)
@@ -263,10 +256,9 @@ public class CCMain {
 				.setUnlocalizedName("C2StoneAxe");
 		C2WoodenAxe = new ItemC2WoodenAxe(C2WOOD)
 				.setUnlocalizedName("C2WoodenAxe");
-		CompactRedstoneCrystal = new ItemCompactRedstoneCrystal(
-				ItemIDs.CompactRedstoneCrystalID)
+		CompactRedstoneCrystal = new ItemCompactRedstoneCrystal()
 				.setUnlocalizedName("CompactRedstoneCrystal");
-		GlassBrick = new ItemGlassBrick(ItemIDs.GlassBrickID)
+		GlassBrick = new ItemGlassBrick()
 				.setUnlocalizedName("GlassBrick");
 		C1IronShovel = new ItemC1IronShovel(C1IRON)
 				.setUnlocalizedName("C1IronShovel");

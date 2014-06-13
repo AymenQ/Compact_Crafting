@@ -1,4 +1,4 @@
-package moony.compactcrafting.gui;
+/*package moony.compactcrafting.gui;
 
 import moony.compactcrafting.containers.ContainerCompactChest;
 import moony.compactcrafting.tileentitys.TileEntityCompactChest;
@@ -12,7 +12,7 @@ public class GuiHandler implements IGuiHandler {
         @Override
         public Object getServerGuiElement(int id, EntityPlayer player, World world,
                         int x, int y, int z) {
-                TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+                TileEntity tileEntity = world.getTileEntity(x, y, z);
                 if(tileEntity instanceof TileEntityCompactChest){
                         return new ContainerCompactChest(player.inventory, (TileEntityCompactChest) tileEntity);
                 }
@@ -23,11 +23,11 @@ public class GuiHandler implements IGuiHandler {
         @Override
         public Object getClientGuiElement(int id, EntityPlayer player, World world,
                         int x, int y, int z) {
-                TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+                TileEntity tileEntity = world.getTileEntity(x, y, z);
                 if(tileEntity instanceof TileEntityCompactChest){
                         return new GuiCompactChest(player.inventory, (TileEntityCompactChest) tileEntity);
                 }
                 return null;
 
         }
-}
+}*/

@@ -3,12 +3,14 @@ package moony.compactcrafting;
 import moony.compactcrafting.core.misc.PressureMachineRecipes;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.util.MathHelper;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SlotPressureMachine extends Slot
@@ -110,14 +112,14 @@ public class SlotPressureMachine extends Slot
 
 		this.field_75228_b = 0;
 
-		GameRegistry.onItemSmelted(thePlayer, par1ItemStack);
+		FMLCommonHandler.instance().firePlayerSmeltedEvent(thePlayer, par1ItemStack);
 
-		if (par1ItemStack.itemID == Item.ingotIron.itemID)
+		if (par1ItemStack.getItem() == Items.iron_ingot)
 		{
 			this.thePlayer.addStat(AchievementList.acquireIron, 1);
 		}
 
-		if (par1ItemStack.itemID == Item.fishCooked.itemID)
+		if (par1ItemStack.getItem() == Items.cooked_fished)
 		{
 			this.thePlayer.addStat(AchievementList.cookFish, 1);
 		}

@@ -6,6 +6,8 @@ import moony.compactcrafting.core.misc.BlockNotifyType;
 import moony.compactcrafting.core.misc.PressureMachineRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
@@ -14,8 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.common.ForgeDummyContainer;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -158,13 +159,12 @@ public class TilePressureMachine extends TileEntity implements IInventory,
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		super.readFromNBT(par1NBTTagCompound);
-		NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+		NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", 10);
 		this.furnaceItemStacks = new ItemStack[this.getSizeInventory()];
 
 		for (int i = 0; i < nbttaglist.tagCount(); ++i)
 		{
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist
-					.tagAt(i);
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte b0 = nbttagcompound1.getByte("Slot");
 
 			if (b0 >= 0 && b0 < this.furnaceItemStacks.length)
@@ -287,7 +287,7 @@ public class TilePressureMachine extends TileEntity implements IInventory,
 						if (this.furnaceItemStacks[1].stackSize == 0)
 						{
 							this.furnaceItemStacks[1] = this.furnaceItemStacks[1]
-									.getItem().getContainerItemStack(
+									.getItem().getContainerItem(
 											furnaceItemStacks[1]);
 						}
 					}
@@ -331,7 +331,7 @@ public class TilePressureMachine extends TileEntity implements IInventory,
 
 		if (flag1)
 		{
-			this.onInventoryChanged();
+			this.markDirty();
 		}
 	}
 
@@ -399,17 +399,16 @@ public class TilePressureMachine extends TileEntity implements IInventory,
 			return 0;
 		} else
 		{
-			int i = par0ItemStack.getItem().itemID;
 			Item item = par0ItemStack.getItem();
 
-			if (par0ItemStack.getItem() instanceof ItemBlock
-					&& Block.blocksList[i] != null)
+			if (item instanceof ItemBlock
+					&& Block.getBlockFromItem(item) != Blocks.air)
 			{
-				Block block = Block.blocksList[i];
+				Block block = Block.getBlockFromItem(item);
 
 			}
 
-			if (i == CCMain.CompactRedstoneCrystal.itemID)
+			if (item == CCMain.CompactRedstoneCrystal)
 				return 5000;
 			return GameRegistry.getFuelValue(par0ItemStack);
 		}
@@ -429,7 +428,7 @@ public class TilePressureMachine extends TileEntity implements IInventory,
 	 */
 	public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
 	{
-		return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord,
+		return this.worldObj.getTileEntity(this.xCoord, this.yCoord,
 				this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq(
 				(double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
 				(double) this.zCoord + 0.5D) <= 64.0D;
@@ -462,16 +461,7 @@ public class TilePressureMachine extends TileEntity implements IInventory,
 				: field_102009_f);
 	}
 
-	public boolean func_102007_a(int par1, ItemStack par2ItemStack, int par3)
-	{
-		return this.isStackValidForSlot(par1, par2ItemStack);
-	}
 
-	public boolean func_102008_b(int par1, ItemStack par2ItemStack, int par3)
-	{
-		return par3 != 0 || par1 != 1
-				|| par2ItemStack.itemID == Item.bucketEmpty.itemID;
-	}
 
 	/***********************************************************************************
 	 * This function is here for compatibilities sake, Modders should Check for
@@ -514,5 +504,52 @@ public class TilePressureMachine extends TileEntity implements IInventory,
 	public int getSizeInventorySide(ForgeDirection side)
 	{
 		return 1;
+	}
+
+	@Override
+	public int[] getAccessibleSlotsFromSide(int var1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean canInsertItem(int var1, ItemStack var2, int var3) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean canExtractItem(int var1, ItemStack var2, int var3) {
+		return var3 != 0 || var1 != 1 || var2.getItem() == Items.bucket;
+	}
+
+	@Override
+	public String getInventoryName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean hasCustomInventoryName() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void openInventory() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void closeInventory() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isItemValidForSlot(int var1, ItemStack var2) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

@@ -1,4 +1,4 @@
-package moony.compactcrafting.tileentitys;
+/*package moony.compactcrafting.tileentitys;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -155,4 +155,4 @@ public class TileEntityCompactChest extends TileEntity implements IInventory
 	}
 
 	
-}
+}*/

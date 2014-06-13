@@ -4,6 +4,7 @@ import moony.compactcrafting.containers.ContainerPressureMachine;
 import moony.compactcrafting.tileentitys.TilePressureMachine;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
@@ -28,8 +29,8 @@ public class GuiPressureMachine extends GuiContainer
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
         String s = this.furnaceInventory.isInvNameLocalized() ? this.furnaceInventory.getInvName() : StatCollector.translateToLocal(this.furnaceInventory.getInvName());
-        this.fontRenderer.drawString(s, this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
-        this.fontRenderer.drawString(StatCollector.translateToLocal("Inventory"), 8, this.ySize - 96 + 2, 4210752);
+        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRendererObj.drawString(StatCollector.translateToLocal("Inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
     /**
@@ -38,7 +39,7 @@ public class GuiPressureMachine extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture("/mods/CC/textures/gui/PressureMachine.png");
+        this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/PressureMachine.png"));
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);

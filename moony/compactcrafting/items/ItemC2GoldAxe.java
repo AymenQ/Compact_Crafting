@@ -7,15 +7,15 @@ import net.minecraft.item.ItemAxe;
 
 public class ItemC2GoldAxe extends ItemAxe {
 
-	public ItemC2GoldAxe(int id, ToolMaterial enumToolMaterial) {
+	public ItemC2GoldAxe(ToolMaterial enumToolMaterial) {
 		super(enumToolMaterial);
 		this.setCreativeTab(CreativeTabs.tabTools);
 
 	}
 	
-	public void updateIcons(IIconRegister par1IconRegister)
+	@Override
+	public void registerIcons(IIconRegister par1IconRegister)
 	{
-	    this.itemIcon = par1IconRegister.registerIcon(CCMain.modid + ":" + this.getUnlocalizedName());
+	    this.itemIcon = par1IconRegister.registerIcon(CCMain.modid + ":" + "C2GoldAxe");
 	}
-
 }
