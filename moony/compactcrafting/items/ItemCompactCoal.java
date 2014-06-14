@@ -12,9 +12,10 @@ public class ItemCompactCoal extends Item {
 		this.setCreativeTab(CCMain.compactTab);
 	}
 	
-	public void updateIcons(IIconRegister par1IconRegister)
+	@Override
+	public void registerIcons(IIconRegister par1IconRegister)
 	{
-	    this.itemIcon = par1IconRegister.registerIcon(CCMain.modid + ":" + this.getUnlocalizedName());
+	    this.itemIcon = par1IconRegister.registerIcon(CCMain.modid + ":" + "CompactCoal");
 	}
 	
 }

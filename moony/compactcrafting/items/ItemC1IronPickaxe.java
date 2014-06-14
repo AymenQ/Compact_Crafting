@@ -9,7 +9,7 @@ public class ItemC1IronPickaxe extends ItemPickaxe{
 
 	public ItemC1IronPickaxe(ToolMaterial enumToolMaterial) {
 		super(enumToolMaterial);
-		this.setCreativeTab(CreativeTabs.tabTools);		
+		this.setCreativeTab(CCMain.compactTab);	
 	}
 	
 	@Override
@@ -18,6 +18,4 @@ public class ItemC1IronPickaxe extends ItemPickaxe{
 	    this.itemIcon = par1IconRegister.registerIcon(CCMain.modid + ":" + "C1IronPickaxe");
 	}
 	
-
-
 }

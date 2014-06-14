@@ -41,7 +41,6 @@ import moony.compactcrafting.items.ItemC2WoodenPickaxe;
 import moony.compactcrafting.items.ItemCompactCoal;
 import moony.compactcrafting.items.ItemCompactRedstoneCrystal;
 import moony.compactcrafting.items.ItemGlassBrick;
-import moony.compactcrafting.tileentitys.TileEntityCompactChest;
 import moony.compactcrafting.tileentitys.TilePressureMachine;
 import moony.compactcrafting.worldgenerators.WorldGeneratorCCB;
 import moony.compactcrafting.worldgenerators.WorldGeneratorCNR;
@@ -56,6 +55,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -315,8 +315,6 @@ public class CCMain {
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, guiHandler);
 
-		GameRegistry.registerTileEntity(TileEntityCompactChest.class,
-				"tecompactchest");
 		GameRegistry.registerTileEntity(TilePressureMachine.class,
 				"pressuremachine");
 
@@ -352,21 +350,42 @@ public class CCMain {
 			}
 
 		}
+		if(true)
+		{
+			//Register Items
+			GameRegistry.registerItem(CompactCoal, "CompactCoal");
+			GameRegistry.registerItem(CompactRedstoneCrystal, "CompactRedstoneCrystal");
+			GameRegistry.registerItem(GlassBrick, "GlassBrick");
+			
+			GameRegistry.registerItem(C1DiamondAxe, "C1DiamondAxe");
+			GameRegistry.registerItem(C1DiamondPickaxe, "C1DiamondPickaxe");
+			GameRegistry.registerItem(C1DiamondShovel, "C1DiamondShovel");
+			
+			GameRegistry.registerItem(C1GoldAxe, "C1GoldAxe");
+			GameRegistry.registerItem(C1GoldPickaxe, "C1GoldPickaxe");
+			GameRegistry.registerItem(C1GoldenShovel, "C1GoldenShovel");
+			
+			GameRegistry.registerItem(C1IronAxe, "C1IronAxe");
+			GameRegistry.registerItem(C1IronPickaxe, "C1IronPickaxe");
+			GameRegistry.registerItem(C1IronShovel, "C1IronShovel");
+			
+			GameRegistry.registerItem(C1StoneAxe, "C1StoneAxe");
+			GameRegistry.registerItem(C1StonePickaxe, "C1StonePickaxe");
+			GameRegistry.registerItem(C1StoneShovel, "C1StoneShovel");
+			
+			GameRegistry.registerItem(C1WoodenAxe, "C1WoodenAxe");
+			GameRegistry.registerItem(C1WoodenPickaxe, "C1WoodenPickaxe");
+			GameRegistry.registerItem(C1WoodenShovel, "C1WoodenShovel");
+		}
 		// Handlers
 		FMLCommonHandler.instance().bus().register(new EventListener());
 
 		GameRegistry.registerBlock(pressureMachineIdle, "PressureMachineIdle");
 
 		// Registering Names for Blocks
-		LanguageRegistry.addName(CompactCobblestone, "Compact Cobblestone");
-		LanguageRegistry.addName(CompactCoalBlock, "Compact Coal Block");
-		LanguageRegistry.addName(CompactNetherrack, "Compact Netherrack");
-		LanguageRegistry.addName(CompactDirt, "Compact Dirt");
-		LanguageRegistry.addName(CompactGlass, "Compact Glass");
-		LanguageRegistry.addName(CompactSand, "Compact Sand");
-		LanguageRegistry.addName(CompactGravel, "Compact Gravel");
+
 		LanguageRegistry.addName(pressureMachineIdle, "Pressure Machine");
-		LanguageRegistry.addName(GlassBrickBlock, "Glass Brick Block");
+	
 
 		// Registering Names for Items
 		LanguageRegistry.instance().addNameForObject(CompactCoal, "en_US",
@@ -400,7 +419,6 @@ public class CCMain {
 		LanguageRegistry.addName(C2GoldAxe, "||Golden Axe||");
 		LanguageRegistry.addName(C2StoneAxe, "||Stone Axe||");
 		LanguageRegistry.addName(C2WoodenAxe, "||Wooden Axe||");
-
 		LanguageRegistry.addName(C1IronShovel, "|Iron Shovel|");
 		LanguageRegistry.addName(C1DiamondShovel, "|Diamond Shovel|");
 		LanguageRegistry.addName(C1GoldenShovel, "|Golden Shovel|");
@@ -435,8 +453,8 @@ public class CCMain {
 			GameRegistry.registerWorldGenerator(new WorldGeneratorCNR(), 2);
 		}
 		// Shaped Recipes
-		GameRegistry.addRecipe(new ItemStack(this.CompactCobblestone),
-				new Object[] { "XXX", "XXX", "XXX", 'X', Blocks.cobblestone });
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(this.CompactCobblestone),
+				"XXX", "XXX", "XXX", 'X', Blocks.cobblestone));
 		GameRegistry.addRecipe(new ItemStack(this.CompactCoal), new Object[] {
 				"   ", "XX ", "XX ", 'X', Items.coal });
 		GameRegistry.addRecipe(new ItemStack(this.CompactRedstoneCrystal),

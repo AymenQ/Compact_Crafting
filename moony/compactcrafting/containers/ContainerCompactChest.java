@@ -1,4 +1,4 @@
-package moony.compactcrafting.containers;
+/*package moony.compactcrafting.containers;
 
 import moony.compactcrafting.SlotCompactChest;
 import moony.compactcrafting.tileentitys.TileEntityCompactChest;
@@ -95,3 +95,4 @@ public class ContainerCompactChest extends Container
 		return stack;
 	}
 }
+*/

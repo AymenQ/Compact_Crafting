@@ -34,6 +34,6 @@ public class WorldGeneratorCNR implements IWorldGenerator
 	  int Ycoord = random.nextInt(60);
 	  int Zcoord = blockZ + random.nextInt(16);
 	  
-	  (new WorldGenMinableNether(CCMain.CompactNetherrack.blockID, random.nextInt(20))).generate(world, random, Xcoord, Ycoord, Zcoord);
+	  (new WorldGenMinableNether(CCMain.CompactNetherrack, random.nextInt(20))).generate(world, random, Xcoord, Ycoord, Zcoord);
 		}
   	}

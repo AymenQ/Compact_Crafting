@@ -45,7 +45,7 @@ public class WorldGeneratorCCB implements IWorldGenerator {
 			int Ycoord = random.nextInt(15);
 			int Zcoord = blockZ + random.nextInt(16);
 			
-			(new WorldGenMinable(CCMain.CompactCobblestone.blockID, random.nextInt(20))).generate(world, random, Xcoord, Ycoord, Zcoord);
+			(new WorldGenMinable(CCMain.CompactCobblestone, random.nextInt(20))).generate(world, random, Xcoord, Ycoord, Zcoord);
 		}
 	}
 

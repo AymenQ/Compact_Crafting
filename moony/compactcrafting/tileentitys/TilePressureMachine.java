@@ -17,6 +17,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -484,21 +485,12 @@ public class TilePressureMachine extends TileEntity implements IInventory,
 
 	public int getStartInventorySide(ForgeDirection side)
 	{
-		if (ForgeDummyContainer.legacyFurnaceSides)
-		{
-			if (side == ForgeDirection.DOWN)
-				return 1;
-			if (side == ForgeDirection.UP)
-				return 0;
-			return 2;
-		} else
-		{
+
 			if (side == ForgeDirection.DOWN)
 				return 2;
 			if (side == ForgeDirection.UP)
 				return 0;
 			return 1;
-		}
 	}
 
 	public int getSizeInventorySide(ForgeDirection side)
