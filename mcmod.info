@@ -1,0 +1,14 @@
+[
+{
+"modid":"CC",
+"name":"Compact Crafting",
+"description":"This mod allows you to store items that you usually have a lot of in a single block, making it much easier to carry a lot of stuff!",
+"version":"5.0",
+"credits":"|--|Moony22|--|",
+"mcversion":"1.7.2",
+"authors":["Moony22"],
+"dependencies":[
+"mod_MinecraftForge"
+]
+}
+]
