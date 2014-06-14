@@ -55,7 +55,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -306,6 +305,9 @@ public class CCMain {
 
 		// Initialise Achievements
 		achievements = new CompactAchievement();
+		
+		GameRegistry.registerBlock(CompactCobblestone,
+				"CompactCobblestone");
 
 	}
 
@@ -320,11 +322,9 @@ public class CCMain {
 
 		// Registering Blocks
 
-		if (BlockOn == 1) {
-			if (CompactCobblestoneID != 999) {
-				GameRegistry.registerBlock(CompactCobblestone,
-						"CompactCobblestone");
-			}
+	
+
+	
 			if (CompactCoalBlockID != 999) {
 				GameRegistry
 						.registerBlock(CompactCoalBlock, "CompactCoalBlock");
@@ -349,7 +349,7 @@ public class CCMain {
 				GameRegistry.registerBlock(GlassBrickBlock, "GlassBrickBlock");
 			}
 
-		}
+		
 		if(true)
 		{
 			//Register Items
@@ -453,8 +453,8 @@ public class CCMain {
 			GameRegistry.registerWorldGenerator(new WorldGeneratorCNR(), 2);
 		}
 		// Shaped Recipes
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(this.CompactCobblestone),
-				"XXX", "XXX", "XXX", 'X', Blocks.cobblestone));
+		GameRegistry.addRecipe(new ItemStack(this.CompactCobblestone, 1),
+				new Object[] { "XXX", "XXX", "XXX", 'X', Blocks.cobblestone });
 		GameRegistry.addRecipe(new ItemStack(this.CompactCoal), new Object[] {
 				"   ", "XX ", "XX ", 'X', Items.coal });
 		GameRegistry.addRecipe(new ItemStack(this.CompactRedstoneCrystal),

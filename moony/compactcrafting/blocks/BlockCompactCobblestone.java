@@ -12,12 +12,6 @@ import net.minecraft.item.Item;
 public class BlockCompactCobblestone extends Block {
 
 
-@Override
-	public int damageDropped(int p_149692_1_) {
-		// TODO Auto-generated method stub
-		return p_149692_1_;
-	}
-
 public BlockCompactCobblestone(Material material) {
 		super(material);
 		this.setCreativeTab(CCMain.compactTab);
