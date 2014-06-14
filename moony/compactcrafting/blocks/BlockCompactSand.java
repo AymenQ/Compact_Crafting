@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 
 public class BlockCompactSand extends BlockSand{
 
-	public BlockCompactSand(Material material) {
+	public BlockCompactSand() {
 		super();
 		this.setCreativeTab(CCMain.compactTab);
 	}

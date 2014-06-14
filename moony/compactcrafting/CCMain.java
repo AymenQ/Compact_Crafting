@@ -122,14 +122,6 @@ public class CCMain {
 	public static final ToolMaterial C2WOOD = EnumHelper.addToolMaterial(
 			"C2WOOD", 0, 900, 4.0F, 0, 15);
 	// Configurations
-	int CompactCobblestoneID;
-	int CompactCoalBlockID;
-	int CompactNetherrackID;
-	int CompactDirtID;
-	int CompactGlassID;
-	int CompactSandID;
-	int CompactGravelID;
-	int GlassBrickBlockID;
 
 	public static int BlockOn;
 	public static int EasterEggOn;
@@ -287,7 +279,7 @@ public class CCMain {
 		CompactGlass = new BlockCompactGlass(Material.glass, false)
 				.setHardness(0.3F).setBlockName("CompactGlass");
 
-		CompactSand = new BlockCompactSand(Material.sand).setHardness(0.6F)
+		CompactSand = new BlockCompactSand().setHardness(0.6F)
 				.setBlockName("CompactSand");
 
 		CompactGravel = new BlockCompactGravel().setHardness(0.7F)
@@ -303,11 +295,31 @@ public class CCMain {
 		GlassBrickBlock = new BlockGlassBrickBlock(Material.glass, false)
 				.setHardness(0.3F).setBlockName("GlassBrickBlock");
 
-		// Initialise Achievements
-		achievements = new CompactAchievement();
+
+		// Registering Blocks
 		
 		GameRegistry.registerBlock(CompactCobblestone,
 				"CompactCobblestone");
+
+		GameRegistry.registerBlock(CompactCoalBlock, "CompactCoalBlock");
+
+		GameRegistry.registerBlock(CompactNetherrack,
+				"CompactNetherrack");
+
+		GameRegistry.registerBlock(CompactDirt, "CompactDirt");
+
+		GameRegistry.registerBlock(CompactGlass, "CompactGlass");
+
+		GameRegistry.registerBlock(CompactSand, "CompactSand");
+
+		GameRegistry.registerBlock(CompactGravel, "CompactGravel");
+		
+
+		GameRegistry.registerBlock(GlassBrickBlock, "GlassBrickBlock");
+	
+		
+		// Initialise Achievements
+		achievements = new CompactAchievement();
 
 	}
 
@@ -320,36 +332,6 @@ public class CCMain {
 		GameRegistry.registerTileEntity(TilePressureMachine.class,
 				"pressuremachine");
 
-		// Registering Blocks
-
-	
-
-	
-			if (CompactCoalBlockID != 999) {
-				GameRegistry
-						.registerBlock(CompactCoalBlock, "CompactCoalBlock");
-			}
-			if (CompactNetherrackID != 999) {
-				GameRegistry.registerBlock(CompactNetherrack,
-						"CompactNetherrack");
-			}
-			if (CompactDirtID != 999) {
-				GameRegistry.registerBlock(CompactDirt, "CompactDirt");
-			}
-			if (CompactGlassID != 999) {
-				GameRegistry.registerBlock(CompactGlass, "CompactGlass");
-			}
-			if (CompactSandID != 999) {
-				GameRegistry.registerBlock(CompactSand, "CompactSand");
-			}
-			if (CompactGravelID != 999) {
-				GameRegistry.registerBlock(CompactGravel, "CompactGravel");
-			}
-			if (GlassBrickBlockID != 999) {
-				GameRegistry.registerBlock(GlassBrickBlock, "GlassBrickBlock");
-			}
-
-		
 		if(true)
 		{
 			//Register Items
