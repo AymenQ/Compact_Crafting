@@ -15,7 +15,7 @@ public class BlockCompactGravel extends BlockSand {
         this.setCreativeTab(CCMain.compactTab);
     }
 
-    /**
+    /**	
      * Returns the ID of the items to drop on destruction.
      */
     @Override

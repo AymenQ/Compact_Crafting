@@ -134,10 +134,8 @@ public class BlockPressureMachine extends BlockContainer
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(IBlockAccess par1IBlockAccess, int x, int y,
-			int z, int side)
+	public IIcon getIcon(int meta, int side)
 	{
-		int meta = par1IBlockAccess.getBlockMetadata(x, y, z);
 		switch (side)
 		{
 		case CCMain.sideBottom:

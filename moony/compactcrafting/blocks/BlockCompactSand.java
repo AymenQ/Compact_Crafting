@@ -1,14 +1,14 @@
 package moony.compactcrafting.blocks;
 
 import moony.compactcrafting.CCMain;
-import net.minecraft.block.BlockSand;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
-public class BlockCompactSand extends BlockSand{
+public class BlockCompactSand extends Block{
 
 	public BlockCompactSand() {
-		super();
+		super(Material.sand);
 		this.setCreativeTab(CCMain.compactTab);
 	}
 	
