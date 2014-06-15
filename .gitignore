@@ -7,5 +7,7 @@
 !/src/*
 !/*.gradle
 !/*.md
+!/changelog.txt
+!/'GNU General Public License.txt'
 .gradle
 
