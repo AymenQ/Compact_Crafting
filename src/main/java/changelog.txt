@@ -1,0 +1,11 @@
+
+V3.2-Fixed Crash when loading Minecraft after getting a Compact Crafting System, Fixed sand not converting back, small tweaks with files.
+
+V3.1-Changed build to use Minecraft Forge's independent build system, so it will work with 1.5 and 1.5.1, added 2 achievements, added Compact Sand and Compact Glass
+
+V3.0-Added Compact Pickaxes (Tier two), Compact Axes (Tier one and Tier two), updated to 1.5.1, changed layout of textures, changed the mod file into a jar file, edited Compact Blocks to drop their uncompacted selves.(MC 1.5.1)
+
+V2.0-Added Compact Pickaxes(Tier one), Compact Dirt, World Generation. Compact Creative Tab and new Compact Pickaxes
+V1.1-Fixed Bug which stopped Compact Coal and Compact Coal Block not being fuel.
+
+V1.0-Initial Release, Featuring Compact CobbleStone Compact Netherrack Compact Coal and Compact Coal Block(MC 1.4.7)
