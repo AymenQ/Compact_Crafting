@@ -81,12 +81,6 @@ public class CCMain {
 	// Tells Forge the location of your proxies
 	public static CommonProxy proxy;
 
-	public static final int sideBottom = 0;
-	public static final int sideTop = 1;
-	public static final int sideNorth = 2;
-	public static final int sideSouth = 3;
-	public static final int sideWest = 4;
-	public static final int sideEast = 5;
 
 	// Blocks
 	public static Block CompactDirt;
@@ -123,8 +117,10 @@ public class CCMain {
 			"C2WOOD", 0, 900, 4.0F, 0, 15);
 	// Configurations
 
-	public static int BlockOn;
-	static int WorldGenOn;
+	public static boolean BlockOn;
+	public static boolean WorldGenOn;
+	public static boolean ToolsOn;
+	public static boolean ItemsOn;
 
 	// Items
 	public static Item CompactCoal;
@@ -184,21 +180,26 @@ public class CCMain {
 		try {
 
 			BlockOn = cfg
-					.get(cfg.CATEGORY_GENERAL,
-							"Compact Crafting Blocks On or Off", 1,
-							"Set to 0 to disable all Compact Crafting Blocks, and set to 1 to enable them")
-					.getInt();
-
+					.get("General Toggles",
+							"Compact Blocks On or Off", true,
+							"Set to false to disable all Compact Blocks, and set to true to enable them")
+					.getBoolean(true);
+			ItemsOn = cfg.get("General Toggles", "Compact Items On or Off", true,
+					"Set to false to disable all Compact Items, and set to true to enable them")
+					.getBoolean(true);
+			ToolsOn = cfg.get("General Toggles", "Compact Tools On or Off", true,
+					"Set to false to disable all Compact Tools, and set to true to enable them")
+					.getBoolean(true);
 			WorldGenOn = cfg
-					.get(cfg.CATEGORY_GENERAL,
+					.get("General Toggles",
 							"World Generation on or off",
-							1,
+							true,
 							"Set to 0 to disable Compact Crafting world generation, and set to 1 to enable it")
-					.getInt();
+					.getBoolean(true);
 
 		} catch (Exception e) {
-			//FMLLog.log(Level.SEVERE,
-					//"Compact Crafting has trouble loading config", e);
+			// FMLLog.log(Level.SEVERE,
+			// "Compact Crafting has trouble loading config", e);
 		} finally {
 
 			// Save the Configuration
@@ -244,8 +245,7 @@ public class CCMain {
 				.setUnlocalizedName("C2WoodenAxe");
 		CompactRedstoneCrystal = new ItemCompactRedstoneCrystal()
 				.setUnlocalizedName("CompactRedstoneCrystal");
-		GlassBrick = new ItemGlassBrick()
-				.setUnlocalizedName("GlassBrick");
+		GlassBrick = new ItemGlassBrick().setUnlocalizedName("GlassBrick");
 		C1IronShovel = new ItemC1IronShovel(C1IRON)
 				.setUnlocalizedName("C1IronShovel");
 		C1DiamondShovel = new ItemC1DiamondShovel(C1DIAMOND)
@@ -274,8 +274,8 @@ public class CCMain {
 		CompactGlass = new BlockCompactGlass(Material.glass, false)
 				.setHardness(0.3F).setBlockName("CompactGlass");
 
-		CompactSand = new BlockCompactSand().setHardness(0.6F)
-				.setBlockName("CompactSand");
+		CompactSand = new BlockCompactSand().setHardness(0.6F).setBlockName(
+				"CompactSand");
 
 		CompactGravel = new BlockCompactGravel().setHardness(0.7F)
 				.setBlockName("CompactGravel");
@@ -290,29 +290,57 @@ public class CCMain {
 		GlassBrickBlock = new BlockGlassBrickBlock(Material.glass, false)
 				.setHardness(0.3F).setBlockName("GlassBrickBlock");
 
-
 		// Registering Blocks
+
+		if (BlockOn) {
+			GameRegistry
+					.registerBlock(CompactCobblestone, "CompactCobblestone");
+
+			GameRegistry.registerBlock(CompactCoalBlock, "CompactCoalBlock");
+
+			GameRegistry.registerBlock(CompactNetherrack, "CompactNetherrack");
+
+			GameRegistry.registerBlock(CompactDirt, "CompactDirt");
+
+			GameRegistry.registerBlock(CompactGlass, "CompactGlass");
+
+			GameRegistry.registerBlock(CompactSand, "CompactSand");
+
+			GameRegistry.registerBlock(CompactGravel, "CompactGravel");
+
+			GameRegistry.registerBlock(GlassBrickBlock, "GlassBrickBlock");
+		}
+
+		if (ItemsOn) {
+			// Register Items
+			GameRegistry.registerItem(CompactCoal, "CompactCoal");
+			GameRegistry.registerItem(CompactRedstoneCrystal,
+					"CompactRedstoneCrystal");
+			GameRegistry.registerItem(GlassBrick, "GlassBrick");
+		}
 		
-		GameRegistry.registerBlock(CompactCobblestone,
-				"CompactCobblestone");
+		if(ToolsOn)
+		{
+			GameRegistry.registerItem(C1DiamondAxe, "C1DiamondAxe");
+			GameRegistry.registerItem(C1DiamondPickaxe, "C1DiamondPickaxe");
+			GameRegistry.registerItem(C1DiamondShovel, "C1DiamondShovel");
 
-		GameRegistry.registerBlock(CompactCoalBlock, "CompactCoalBlock");
+			GameRegistry.registerItem(C1GoldAxe, "C1GoldAxe");
+			GameRegistry.registerItem(C1GoldPickaxe, "C1GoldPickaxe");
+			GameRegistry.registerItem(C1GoldenShovel, "C1GoldenShovel");
 
-		GameRegistry.registerBlock(CompactNetherrack,
-				"CompactNetherrack");
+			GameRegistry.registerItem(C1IronAxe, "C1IronAxe");
+			GameRegistry.registerItem(C1IronPickaxe, "C1IronPickaxe");
+			GameRegistry.registerItem(C1IronShovel, "C1IronShovel");
 
-		GameRegistry.registerBlock(CompactDirt, "CompactDirt");
+			GameRegistry.registerItem(C1StoneAxe, "C1StoneAxe");
+			GameRegistry.registerItem(C1StonePickaxe, "C1StonePickaxe");
+			GameRegistry.registerItem(C1StoneShovel, "C1StoneShovel");
 
-		GameRegistry.registerBlock(CompactGlass, "CompactGlass");
-
-		GameRegistry.registerBlock(CompactSand, "CompactSand");
-
-		GameRegistry.registerBlock(CompactGravel, "CompactGravel");
-		
-
-		GameRegistry.registerBlock(GlassBrickBlock, "GlassBrickBlock");
-	
-		
+			GameRegistry.registerItem(C1WoodenAxe, "C1WoodenAxe");
+			GameRegistry.registerItem(C1WoodenPickaxe, "C1WoodenPickaxe");
+			GameRegistry.registerItem(C1WoodenShovel, "C1WoodenShovel");
+		}
 		// Initialise Achievements
 		achievements = new CompactAchievement();
 
@@ -327,33 +355,6 @@ public class CCMain {
 		GameRegistry.registerTileEntity(TilePressureMachine.class,
 				"pressuremachine");
 
-		if(true)
-		{
-			//Register Items
-			GameRegistry.registerItem(CompactCoal, "CompactCoal");
-			GameRegistry.registerItem(CompactRedstoneCrystal, "CompactRedstoneCrystal");
-			GameRegistry.registerItem(GlassBrick, "GlassBrick");
-			
-			GameRegistry.registerItem(C1DiamondAxe, "C1DiamondAxe");
-			GameRegistry.registerItem(C1DiamondPickaxe, "C1DiamondPickaxe");
-			GameRegistry.registerItem(C1DiamondShovel, "C1DiamondShovel");
-			
-			GameRegistry.registerItem(C1GoldAxe, "C1GoldAxe");
-			GameRegistry.registerItem(C1GoldPickaxe, "C1GoldPickaxe");
-			GameRegistry.registerItem(C1GoldenShovel, "C1GoldenShovel");
-			
-			GameRegistry.registerItem(C1IronAxe, "C1IronAxe");
-			GameRegistry.registerItem(C1IronPickaxe, "C1IronPickaxe");
-			GameRegistry.registerItem(C1IronShovel, "C1IronShovel");
-			
-			GameRegistry.registerItem(C1StoneAxe, "C1StoneAxe");
-			GameRegistry.registerItem(C1StonePickaxe, "C1StonePickaxe");
-			GameRegistry.registerItem(C1StoneShovel, "C1StoneShovel");
-			
-			GameRegistry.registerItem(C1WoodenAxe, "C1WoodenAxe");
-			GameRegistry.registerItem(C1WoodenPickaxe, "C1WoodenPickaxe");
-			GameRegistry.registerItem(C1WoodenShovel, "C1WoodenShovel");
-		}
 		// Handlers
 		FMLCommonHandler.instance().bus().register(new EventListener());
 
@@ -362,7 +363,6 @@ public class CCMain {
 		// Registering Names for Blocks
 
 		LanguageRegistry.addName(pressureMachineIdle, "Pressure Machine");
-	
 
 		// Registering Names for Items
 		LanguageRegistry.instance().addNameForObject(CompactCoal, "en_US",
@@ -425,7 +425,7 @@ public class CCMain {
 
 		GameRegistry.registerFuelHandler(new CompactFuel());
 
-		if (WorldGenOn == 1) {
+		if (WorldGenOn) {
 			GameRegistry.registerWorldGenerator(new WorldGeneratorCCB(), 1);
 			GameRegistry.registerWorldGenerator(new WorldGeneratorCNR(), 2);
 		}

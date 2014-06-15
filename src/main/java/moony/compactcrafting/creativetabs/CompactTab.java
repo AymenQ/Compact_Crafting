@@ -15,11 +15,11 @@ public class CompactTab extends CreativeTabs
 
 	@Override
 	public Item getTabIconItem() {
-		if (CCMain.BlockOn == 1)
+		if (CCMain.BlockOn)
 		{
 			return Item.getItemFromBlock(CCMain.CompactCobblestone);
 		}
-		else
+		else 
 		{
 			return CCMain.CompactCoal;
 		}
