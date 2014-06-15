@@ -34,13 +34,9 @@ public class BlockPressureMachine extends BlockContainer
 
 	private IIcon icoFurnaceTop;
 	private IIcon icoFurnaceBottom;
-	private IIcon icoFurnaceSide;
-	private IIcon icoFurnaceFrontInactive;
-	private IIcon icoFurnaceFrontActive;
+	private IIcon icoFurnaceFront;
 
 	private static boolean keepInventory = false;
-
-	public boolean eggPlayed = false;
 
 	private static final int METADATA_BITMASK = 0x7;
 	private static final int METADATA_ACTIVEBIT = 0x8;
@@ -119,45 +115,24 @@ public class BlockPressureMachine extends BlockContainer
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
+		this.blockIcon = par1IconRegister.registerIcon("CC:PressureMachineSide");
 		icoFurnaceTop = par1IconRegister.registerIcon(CommonProxy
 				.getIconLocation("PressureMachineTop"));
 		icoFurnaceBottom = par1IconRegister.registerIcon(CommonProxy
 				.getIconLocation("PressureMachineBottom"));
-		icoFurnaceSide = par1IconRegister.registerIcon(CommonProxy
-				.getIconLocation("PressureMachineSide"));
-		icoFurnaceFrontInactive = par1IconRegister.registerIcon(CommonProxy
-				.getIconLocation("PressureMachineFrontInactive"));
-		icoFurnaceFrontActive = par1IconRegister.registerIcon(CommonProxy
-				.getIconLocation("PressureMachineFrontActive"));
-
+		icoFurnaceFront = par1IconRegister.registerIcon(this.isActive ? 
+				"CC:PressureMachineFrontActive" : "CC:PressureMachineFrontInactive");
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int meta, int side)
-	{
-		switch (side)
-		{
-		case CCMain.sideBottom:
-			return icoFurnaceBottom;
-		case CCMain.sideTop:
-			return icoFurnaceTop;
-		default:
-		{
-			if (side == unmarkedMetadata(meta))
-			{
-				if (this.isActiveSet(meta))
-					return icoFurnaceFrontActive;
-				else
-					return icoFurnaceFrontInactive;
-			} else
-				return icoFurnaceSide;
-		}
-		}
-	};
+	  @Override
+      @SideOnly(Side.CLIENT)
+      public IIcon getIcon(int side, int meta)
+      {
+		  return side == 1 ? this.icoFurnaceTop : 
+			  (side == 0 ? this.icoFurnaceBottom : (side != meta ? this.blockIcon 
+					  : this.icoFurnaceFront));
+      };
 
-
-	public int nEggPlayed = 0;
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z,
@@ -165,19 +140,6 @@ public class BlockPressureMachine extends BlockContainer
 	{
 
 		world.playSoundEffect(x, y, z, ("CC:" + "PMOpen"), 0.5F, 1.0F);
-
-		if (CCMain.EasterEggOn == 1)
-		{
-			if (eggPlayed == false && nEggPlayed < 2)
-			{
-				System.out.println("Eggy Egg egg");
-				world.playSoundEffect(x, y, z, "CC.egg", 0.1F, 1.0F);
-				nEggPlayed++;
-			} else
-			{
-				eggPlayed = true;
-			}
-		}
 
 		TileEntity tile_entity = world.getTileEntity(x, y, z);
 

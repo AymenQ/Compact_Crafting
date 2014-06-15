@@ -124,7 +124,6 @@ public class CCMain {
 	// Configurations
 
 	public static int BlockOn;
-	public static int EasterEggOn;
 	static int WorldGenOn;
 
 	// Items
@@ -197,10 +196,6 @@ public class CCMain {
 							"Set to 0 to disable Compact Crafting world generation, and set to 1 to enable it")
 					.getInt();
 
-			EasterEggOn = cfg
-					.get(cfg.CATEGORY_GENERAL, "Easter Egg on or off", 1,
-							"Set to 0 to disable Compact Crafting Easter Egg, and set to 1 to enable it")
-					.getInt();
 		} catch (Exception e) {
 			//FMLLog.log(Level.SEVERE,
 					//"Compact Crafting has trouble loading config", e);
