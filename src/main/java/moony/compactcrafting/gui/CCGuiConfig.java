@@ -13,6 +13,6 @@ public class CCGuiConfig extends GuiConfig {
     public CCGuiConfig(GuiScreen parentScreen) {
         super(parentScreen,
                 new ConfigElement(CCMain.cfg.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
-                "CC", false, false, GuiConfig.getAbridgedConfigPath(CCMain.cfg.toString()));
+                "CC", false, false, GuiConfig.getAbridgedConfigPath(CCMain.cfg.toString()), "Compact Crafting Config");
     }
 }
