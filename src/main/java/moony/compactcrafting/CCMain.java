@@ -67,7 +67,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "CC", name = "CCMain", version = "4.0")
+@Mod(modid = "CC", name = "CCMain", version = "5.0.0")
 public class CCMain {
 
 	@Instance("CC")
