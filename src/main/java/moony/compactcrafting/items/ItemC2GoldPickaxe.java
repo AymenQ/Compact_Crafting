@@ -16,7 +16,7 @@ public class ItemC2GoldPickaxe extends ItemPickaxe {
 	@Override
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-	    this.itemIcon = par1IconRegister.registerIcon(CCMain.modid + ":" + "C2GoldPickaxe");
+	    this.itemIcon = par1IconRegister.registerIcon(CCMain.modid + ":" + "C2GoldenPickaxe");
 	}
 
 }

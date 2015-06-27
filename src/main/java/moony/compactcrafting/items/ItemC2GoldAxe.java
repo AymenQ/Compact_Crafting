@@ -16,6 +16,6 @@ public class ItemC2GoldAxe extends ItemAxe {
 	@Override
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-	    this.itemIcon = par1IconRegister.registerIcon(CCMain.modid + ":" + "C2GoldAxe");
+	    this.itemIcon = par1IconRegister.registerIcon(CCMain.modid + ":" + "C2GoldenAxe");
 	}
 }
