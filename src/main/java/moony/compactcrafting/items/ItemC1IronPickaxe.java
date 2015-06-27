@@ -9,7 +9,7 @@ public class ItemC1IronPickaxe extends ItemPickaxe{
 
 	public ItemC1IronPickaxe(ToolMaterial enumToolMaterial) {
 		super(enumToolMaterial);
-		this.setCreativeTab(CCMain.compactTab);	
+		this.setCreativeTab(CreativeTabs.tabTools);
 	}
 	
 	@Override
