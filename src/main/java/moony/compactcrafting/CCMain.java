@@ -1,5 +1,7 @@
 package moony.compactcrafting;
 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import moony.compactcrafting.blocks.BlockCompactCoalBlock;
 import moony.compactcrafting.blocks.BlockCompactCobblestone;
 import moony.compactcrafting.blocks.BlockCompactDirt;
@@ -67,7 +69,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "CC", name = "CCMain", version = "5.0.0")
+@Mod(modid = "CC", name = "CCMain", version = "5.0.0", guiFactory="moony.compactcrafting.gui.CCGuiFactory")
 public class CCMain {
 
 	@Instance("CC")
@@ -162,6 +164,8 @@ public class CCMain {
 
 	// Methods
 
+    public static Configuration cfg;
+
 	// Before Initialising (What do to before initialisation)
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
@@ -170,41 +174,12 @@ public class CCMain {
 		proxy.registerRenderThings();
 
 		// Configuration Initialising
-		Configuration cfg = new Configuration(
+		cfg = new Configuration(
 				evt.getSuggestedConfigurationFile());
 
 		// Load any previous configurations
-		cfg.load();
+		syncConfig();
 
-		// Get Blocks, Items and others, and put them into the Configuration
-		try {
-
-			BlockOn = cfg
-					.get("General Toggles",
-							"Compact Blocks On or Off", true,
-							"Set to false to disable all Compact Blocks, and set to true to enable them")
-					.getBoolean(true);
-			ItemsOn = cfg.get("General Toggles", "Compact Items On or Off", true,
-					"Set to false to disable all Compact Items, and set to true to enable them")
-					.getBoolean(true);
-			ToolsOn = cfg.get("General Toggles", "Compact Tools On or Off", true,
-					"Set to false to disable all Compact Tools, and set to true to enable them")
-					.getBoolean(true);
-			WorldGenOn = cfg
-					.get("General Toggles",
-							"World Generation on or off",
-							true,
-							"Set to 0 to disable Compact Crafting world generation, and set to 1 to enable it")
-					.getBoolean(true);
-
-		} catch (Exception e) {
-			// FMLLog.log(Level.SEVERE,
-			// "Compact Crafting has trouble loading config", e);
-		} finally {
-
-			// Save the Configuration
-			cfg.save();
-		}
 
 		// Initialise all the Items
 		CompactCoal = new ItemCompactCoal().setUnlocalizedName("CompactCoal");
@@ -360,6 +335,44 @@ public class CCMain {
 		achievements = new CompactAchievement();
 
 	}
+
+    public static void syncConfig()
+    {
+        try {
+
+            BlockOn = cfg
+                    .get(Configuration.CATEGORY_GENERAL,
+                            "Compact Blocks On or Off", true,
+                            "Set to false to disable all Compact Blocks, and set to true to enable them")
+                    .getBoolean(true);
+            ItemsOn = cfg.get(Configuration.CATEGORY_GENERAL, "Compact Items On or Off", true,
+                    "Set to false to disable all Compact Items, and set to true to enable them")
+                    .getBoolean(true);
+            ToolsOn = cfg.get(Configuration.CATEGORY_GENERAL, "Compact Tools On or Off", true,
+                    "Set to false to disable all Compact Tools, and set to true to enable them")
+                    .getBoolean(true);
+            WorldGenOn = cfg
+                    .get(Configuration.CATEGORY_GENERAL,
+                            "World Generation on or off",
+                            true,
+                            "Set to 0 to disable Compact Crafting world generation, and set to 1 to enable it")
+                    .getBoolean(true);
+
+        } catch (Exception e) {
+            // FMLLog.log(Level.SEVERE,
+            // "Compact Crafting has trouble loading config", e);
+        } finally {
+
+            // Save the Configuration
+            if(cfg.hasChanged()) cfg.save();
+        }
+    }
+
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
+        if(eventArgs.modID.equals("CC"))
+            syncConfig();
+    }
 
 	// Initialising (What do to during initialisation)
 	@EventHandler
