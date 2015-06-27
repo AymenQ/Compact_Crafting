@@ -296,7 +296,7 @@ public class CCMain {
 			GameRegistry
 					.registerBlock(CompactCobblestone, "CompactCobblestone");
 
-			GameRegistry.registerBlock(CompactCoalBlock, "CompactCoalBlock");
+			//GameRegistry.registerBlock(CompactCoalBlock, "CompactCoalBlock");
 
 			GameRegistry.registerBlock(CompactNetherrack, "CompactNetherrack");
 
@@ -313,7 +313,7 @@ public class CCMain {
 
 		if (ItemsOn) {
 			// Register Items
-			GameRegistry.registerItem(CompactCoal, "CompactCoal");
+			//GameRegistry.registerItem(CompactCoal, "CompactCoal");
 			/*GameRegistry.registerItem(CompactRedstoneCrystal,
 					"CompactRedstoneCrystal");*/
 			GameRegistry.registerItem(GlassBrick, "GlassBrick");
@@ -340,6 +340,21 @@ public class CCMain {
 			GameRegistry.registerItem(C1WoodenAxe, "C1WoodenAxe");
 			GameRegistry.registerItem(C1WoodenPickaxe, "C1WoodenPickaxe");
 			GameRegistry.registerItem(C1WoodenShovel, "C1WoodenShovel");
+
+			GameRegistry.registerItem(C2DiamondAxe, "C2DiamondAxe");
+			GameRegistry.registerItem(C2DiamondPickaxe, "C2DiamondPickaxe");
+
+			GameRegistry.registerItem(C2GoldAxe, "C2GoldAxe");
+			GameRegistry.registerItem(C2GoldPickaxe, "C2GoldPickaxe");
+
+			GameRegistry.registerItem(C2IronAxe, "C2IronAxe");
+			GameRegistry.registerItem(C2IronPickaxe, "C2IronPickaxe");
+
+			GameRegistry.registerItem(C2StoneAxe, "C2StoneAxe");
+			GameRegistry.registerItem(C2StonePickaxe, "C2StonePickaxe");
+
+			GameRegistry.registerItem(C2WoodenAxe, "C2WoodenAxe");
+			GameRegistry.registerItem(C2WoodenPickaxe, "C2WoodenPickaxe");
 		}
 		// Initialise Achievements
 		achievements = new CompactAchievement();
@@ -365,8 +380,8 @@ public class CCMain {
 		//LanguageRegistry.addName(pressureMachineIdle, "Pressure Machine");
 
 		// Registering Names for Items
-		LanguageRegistry.instance().addNameForObject(CompactCoal, "en_US",
-				"Compact Coal");
+		//LanguageRegistry.instance().addNameForObject(CompactCoal, "en_US",
+		//		"Compact Coal");
 		/*LanguageRegistry.addName(CompactRedstoneCrystal,
 				"Compact Redstone Crystal");*/
 		LanguageRegistry.addName(GlassBrick, "Glass Brick");
@@ -432,8 +447,8 @@ public class CCMain {
 		// Shaped Recipes
 		GameRegistry.addRecipe(new ItemStack(this.CompactCobblestone, 1),
 				new Object[] { "XXX", "XXX", "XXX", 'X', Blocks.cobblestone });
-		GameRegistry.addRecipe(new ItemStack(this.CompactCoal), new Object[] {
-				"   ", "XX ", "XX ", 'X', Items.coal });
+		//GameRegistry.addRecipe(new ItemStack(this.CompactCoal), new Object[] {
+		//		"   ", "XX ", "XX ", 'X', Items.coal });
 //		GameRegistry.addRecipe(new ItemStack(this.CompactRedstoneCrystal),
 //				new Object[] { "   ", "XX ", "XX ", 'X', Items.redstone });
 		GameRegistry.addRecipe(new ItemStack(this.GlassBrickBlock),
@@ -450,10 +465,10 @@ public class CCMain {
 		// Shapeless Recipes
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.cobblestone, 9),
 				CCMain.CompactCobblestone);
-		GameRegistry.addShapelessRecipe(new ItemStack(Items.coal, 4),
-				CCMain.CompactCoal);
-		GameRegistry.addShapelessRecipe(new ItemStack(CCMain.CompactCoal, 9),
-				CCMain.CompactCoalBlock);
+		//GameRegistry.addShapelessRecipe(new ItemStack(Items.coal, 4),
+				//CCMain.CompactCoal);
+		//GameRegistry.addShapelessRecipe(new ItemStack(CCMain.CompactCoal, 9),
+				//CCMain.CompactCoalBlock);
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.netherrack, 9),
 				CCMain.CompactNetherrack);
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt, 9),
