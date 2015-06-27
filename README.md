@@ -6,7 +6,7 @@
 Compact Crafting is a mod for the game minecraft which makes it easier to store the most common materials and save space. Also this mod adds certain methods to turn your useless stuff to their more useful counterparts.
 ***
 
- Copyright (C) 2014  Moony22
+ Copyright (C) 2015  Moony22
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
