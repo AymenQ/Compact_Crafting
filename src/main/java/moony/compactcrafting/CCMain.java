@@ -243,8 +243,8 @@ public class CCMain {
 				.setUnlocalizedName("C2StoneAxe");
 		C2WoodenAxe = new ItemC2WoodenAxe(C2WOOD)
 				.setUnlocalizedName("C2WoodenAxe");
-		CompactRedstoneCrystal = new ItemCompactRedstoneCrystal()
-				.setUnlocalizedName("CompactRedstoneCrystal");
+		/*CompactRedstoneCrystal = new ItemCompactRedstoneCrystal()
+				.setUnlocalizedName("CompactRedstoneCrystal");*/
 		GlassBrick = new ItemGlassBrick().setUnlocalizedName("GlassBrick");
 		C1IronShovel = new ItemC1IronShovel(C1IRON)
 				.setUnlocalizedName("C1IronShovel");
@@ -283,9 +283,9 @@ public class CCMain {
 		// CompactChest = new BlockCompactChest(Material.wood).setHardness(
 		// 0.7F).setBlockName("CompactChest");
 
-		pressureMachineIdle = new BlockPressureMachine(false, Material.iron)
+		/*pressureMachineIdle = new BlockPressureMachine(false, Material.iron)
 				.setHardness(0.7F).setCreativeTab(this.compactTab)
-				.setBlockName("PressureMachineIdle");
+				.setBlockName("PressureMachineIdle");*/
 
 		GlassBrickBlock = new BlockGlassBrickBlock(Material.glass, false)
 				.setHardness(0.3F).setBlockName("GlassBrickBlock");
@@ -314,8 +314,8 @@ public class CCMain {
 		if (ItemsOn) {
 			// Register Items
 			GameRegistry.registerItem(CompactCoal, "CompactCoal");
-			GameRegistry.registerItem(CompactRedstoneCrystal,
-					"CompactRedstoneCrystal");
+			/*GameRegistry.registerItem(CompactRedstoneCrystal,
+					"CompactRedstoneCrystal");*/
 			GameRegistry.registerItem(GlassBrick, "GlassBrick");
 		}
 		
@@ -352,23 +352,23 @@ public class CCMain {
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, guiHandler);
 
-		GameRegistry.registerTileEntity(TilePressureMachine.class,
-				"pressuremachine");
+		/*GameRegistry.registerTileEntity(TilePressureMachine.class,
+				"pressuremachine");*/
 
 		// Handlers
 		FMLCommonHandler.instance().bus().register(new EventListener());
 
-		GameRegistry.registerBlock(pressureMachineIdle, "PressureMachineIdle");
+		//GameRegistry.registerBlock(pressureMachineIdle, "PressureMachineIdle");
 
 		// Registering Names for Blocks
 
-		LanguageRegistry.addName(pressureMachineIdle, "Pressure Machine");
+		//LanguageRegistry.addName(pressureMachineIdle, "Pressure Machine");
 
 		// Registering Names for Items
 		LanguageRegistry.instance().addNameForObject(CompactCoal, "en_US",
 				"Compact Coal");
-		LanguageRegistry.addName(CompactRedstoneCrystal,
-				"Compact Redstone Crystal");
+		/*LanguageRegistry.addName(CompactRedstoneCrystal,
+				"Compact Redstone Crystal");*/
 		LanguageRegistry.addName(GlassBrick, "Glass Brick");
 
 		LanguageRegistry.addName(C1IronPickaxe, "|Iron Pickaxe|");
@@ -434,8 +434,8 @@ public class CCMain {
 				new Object[] { "XXX", "XXX", "XXX", 'X', Blocks.cobblestone });
 		GameRegistry.addRecipe(new ItemStack(this.CompactCoal), new Object[] {
 				"   ", "XX ", "XX ", 'X', Items.coal });
-		GameRegistry.addRecipe(new ItemStack(this.CompactRedstoneCrystal),
-				new Object[] { "   ", "XX ", "XX ", 'X', Items.redstone });
+//		GameRegistry.addRecipe(new ItemStack(this.CompactRedstoneCrystal),
+//				new Object[] { "   ", "XX ", "XX ", 'X', Items.redstone });
 		GameRegistry.addRecipe(new ItemStack(this.GlassBrickBlock),
 				new Object[] { "   ", "XX ", "XX ", 'X', this.GlassBrick });
 		GameRegistry.addRecipe(new ItemStack(this.CompactCoalBlock),
@@ -444,8 +444,8 @@ public class CCMain {
 				new Object[] { "XXX", "XXX", "XXX", 'X', Blocks.netherrack });
 		GameRegistry.addRecipe(new ItemStack(this.CompactDirt), new Object[] {
 				"XXX", "XXX", "XXX", 'X', Blocks.dirt });
-		GameRegistry.addRecipe(new ItemStack(this.CompactSand), new Object[] {
-				"XXX", "XXX", "XXX", 'X', Blocks.sand });
+		GameRegistry.addRecipe(new ItemStack(this.CompactSand), new Object[]{
+				"XXX", "XXX", "XXX", 'X', Blocks.sand});
 
 		// Shapeless Recipes
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.cobblestone, 9),
@@ -547,6 +547,7 @@ public class CCMain {
 		// Smelting Recipes
 		GameRegistry.addSmelting(CCMain.CompactSand, new ItemStack(
 				CCMain.CompactGlass), 5);
+		GameRegistry.addSmelting(CCMain.CompactGlass, new ItemStack(CCMain.GlassBrick, 4), 5);
 
 	}
 
